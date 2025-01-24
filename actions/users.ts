@@ -12,14 +12,7 @@ export const createUser = async (
     body: JSON.stringify(data),
   });
 
-  if (!response.ok) {
-    return {
-      success: false,
-      data: null,
-    };
-  }
-
-  const result: { success: boolean; data: User } = await response.json();
+  const result: { success: boolean; data: User | null } = await response.json();
 
   return result;
 };
@@ -33,14 +26,7 @@ export const updateUserById = async (
     body: JSON.stringify(data),
   });
 
-  if (!response.ok) {
-    return {
-      success: false,
-      data: null,
-    };
-  }
-
-  const result: { success: boolean; data: User } = await response.json();
+  const result: { success: boolean; data: User | null } = await response.json();
 
   return result;
 };
@@ -58,5 +44,5 @@ export const deleteUserById = async (
     };
   }
 
-  return { success: true };
+  return { success: response.status === 204 };
 };

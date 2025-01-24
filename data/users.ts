@@ -14,28 +14,25 @@ export const getUsers = async (
     `${process.env.BACKEND_URL}/api/users?${searchParams.toString()}`
   );
 
-  if (!response.ok) {
+  const responseJSON: {
+    success: boolean;
+    data: { totalUsers: number; users: User[] } | null;
+  } = await response.json();
+
+  if (!responseJSON.data) {
     return {
       totalUsers: 0,
       users: [],
     };
   }
 
-  const data = (await response.json()).data;
-  const totalUsers = data.totalUsers as number;
-  const users = data.users as User[];
-
-  return { totalUsers, users };
+  return responseJSON.data;
 };
 
 export const getUserById = async (id: string): Promise<User | null> => {
   const response = await fetch(`${process.env.BACKEND_URL}/api/users/${id}`);
 
-  if (!response.ok) {
-    return null;
-  }
-
-  const user = (await response.json()).data as User;
+  const user = (await response.json()).data as User | null;
 
   return user;
 };

@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import { NextRequest, NextResponse } from "next/server";
+import { ZodError } from "zod";
 
 import dbConnect from "@/lib/mysql";
 import { UserSchema } from "@/lib/validation";
@@ -35,6 +36,16 @@ export async function GET(request: NextRequest) {
     );
   } catch (error) {
     console.error(error);
+
+    return NextResponse.json(
+      {
+        success: false,
+        data: null,
+      },
+      {
+        status: 500,
+      }
+    );
   }
 }
 
@@ -70,5 +81,15 @@ export async function POST(request: Request) {
     );
   } catch (error) {
     console.error(error);
+
+    return NextResponse.json(
+      {
+        success: false,
+        data: null,
+      },
+      {
+        status: error instanceof ZodError ? 400 : 500,
+      }
+    );
   }
 }

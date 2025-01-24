@@ -10,7 +10,15 @@ export async function GET(
 ) {
   const { id } = await params;
   if (!id) {
-    throw new Error("User ID is required");
+    return NextResponse.json(
+      {
+        success: false,
+        data: null,
+      },
+      {
+        status: 400,
+      }
+    );
   }
 
   try {
@@ -25,6 +33,7 @@ export async function GET(
       return NextResponse.json(
         {
           success: false,
+          data: null,
         },
         {
           status: 404,
@@ -43,6 +52,16 @@ export async function GET(
     );
   } catch (error) {
     console.error(error);
+
+    return NextResponse.json(
+      {
+        success: false,
+        data: null,
+      },
+      {
+        status: 500,
+      }
+    );
   }
 }
 
@@ -52,7 +71,15 @@ export async function PUT(
 ) {
   const { id } = await params;
   if (!id) {
-    throw new Error("User ID is required");
+    return NextResponse.json(
+      {
+        success: false,
+        data: null,
+      },
+      {
+        status: 400,
+      }
+    );
   }
 
   try {
@@ -67,6 +94,7 @@ export async function PUT(
       return NextResponse.json(
         {
           success: false,
+          data: null,
         },
         {
           status: 404,
@@ -99,6 +127,16 @@ export async function PUT(
     );
   } catch (error) {
     console.error(error);
+
+    return NextResponse.json(
+      {
+        success: false,
+        data: null,
+      },
+      {
+        status: 500,
+      }
+    );
   }
 }
 
@@ -108,7 +146,15 @@ export async function DELETE(
 ) {
   const { id } = await params;
   if (!id) {
-    throw new Error("User ID is required");
+    return NextResponse.json(
+      {
+        success: false,
+        data: null,
+      },
+      {
+        status: 400,
+      }
+    );
   }
 
   try {
@@ -137,5 +183,14 @@ export async function DELETE(
     });
   } catch (error) {
     console.error(error);
+
+    return NextResponse.json(
+      {
+        success: false,
+      },
+      {
+        status: 500,
+      }
+    );
   }
 }

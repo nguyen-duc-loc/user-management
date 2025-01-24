@@ -1,0 +1,20 @@
+services:
+  mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=user_management
+    ports:
+      - "3306:3306"
+  web:
+    build: .
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+    entrypoint: ["/app/wait-for.sh", "mysql:3306", "--", "/app/start.sh"]
+    command: ["npm", "start"]

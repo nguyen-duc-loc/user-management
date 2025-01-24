@@ -1,4 +1,4 @@
-include .env
+include .env.local
 
 MIGRATION_PATH=database/migration
 DB_URL=mysql://${DB_USER}:${DB_PASSWORD}@tcp(${DB_HOST}:3306)/${DB_DATABASE}
@@ -21,4 +21,4 @@ migrate/down:
 migrate/down1:
 	migrate -path "${MIGRATION_PATH}" -database "${DB_URL}" -verbose down 1
 
-.PHONY: mysql migration/new
+.PHONY: mysql migration/new migrate/up migrate/up1 migrate/down migrate/down1
