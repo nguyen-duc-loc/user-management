@@ -2,7 +2,7 @@
 
 set -e
 
-touch .env.local
+tail -n +2 Makefile | tee Makefile
 
 make migrate/up
 

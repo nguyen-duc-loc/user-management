@@ -1,4 +1,4 @@
-FROM node:22-alpine
+FROM node:22.13-alpine3.20
 
 WORKDIR /app
 
@@ -17,6 +17,8 @@ COPY package*.json .
 RUN npm install --force
 
 COPY . .
+
+RUN chmod +x /app/*.sh
 
 EXPOSE 3000
 
