@@ -33,7 +33,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <ColorProvider>
-            <div className="container mx-auto mt-10 px-4 md:mt-16 md:w-3/4 xl:w-3/5">
+            <div className="container mx-auto mt-10 px-4 md:mt-12  md:w-3/4 xl:w-3/5">
               <header className="mb-10 md:mb-12">
                 <div className="flex flex-col-reverse justify-between gap-4 sm:flex-row">
                   <h1 className="mb-2 text-2xl font-semibold tracking-tight lg:text-3xl">

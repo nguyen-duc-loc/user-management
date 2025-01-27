@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
 import { UserSchema } from "@/lib/validation";
@@ -13,6 +14,10 @@ export const createUser = async (
   });
 
   const result: { success: boolean; data: User | null } = await response.json();
+
+  if (result.success) {
+    revalidatePath("/");
+  }
 
   return result;
 };
@@ -28,6 +33,10 @@ export const updateUserById = async (
 
   const result: { success: boolean; data: User | null } = await response.json();
 
+  if (result.success) {
+    revalidatePath(`/user/${id}`);
+  }
+
   return result;
 };
 
@@ -42,6 +51,8 @@ export const deleteUserById = async (
     return {
       success: false,
     };
+  } else {
+    revalidatePath("/");
   }
 
   return { success: response.status === 204 };

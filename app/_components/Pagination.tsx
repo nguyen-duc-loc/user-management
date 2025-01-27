@@ -4,18 +4,19 @@ import PaginationButton from "./PaginationButton";
 
 const Pagination = ({
   count,
-  limit,
+  currentLimit,
   currentPage,
 }: {
   count: number;
-  limit: number;
+  currentLimit: number;
   currentPage: number;
 }) => {
   const totalPage =
-    (count - (count % limit)) / limit + (count % limit > 0 ? 1 : 0);
+    (count - (count % currentLimit)) / currentLimit +
+    (count % currentLimit > 0 ? 1 : 0);
 
   return (
-    <nav className="mb-10 mt-6 flex flex-wrap items-center justify-center gap-1">
+    <nav className="flex items-center justify-center gap-2">
       <PaginationButton page="previous" disabled={currentPage <= 1} />
 
       {currentPage > 2 && <PaginationButton page={1} />}

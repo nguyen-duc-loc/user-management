@@ -29,12 +29,17 @@ const UserTable = ({ users }: { users: User[] }) => {
           <TableRow key={`user-${id}`}>
             <TableCell className="text-center">{id}</TableCell>
             <TableCell className="text-center">
-              <Link href={`/user/${id}`} className="flex items-center gap-2">
+              <Link
+                href={`/user/${id}`}
+                className="group flex items-center gap-2"
+              >
                 <Avatar>
-                  <AvatarImage src="" />
+                  <AvatarImage />
                   <AvatarFallback>{fullname[0]}</AvatarFallback>
                 </Avatar>
-                {fullname}
+                <span className="group-hover:underline group-hover:underline-offset-4">
+                  {fullname}
+                </span>
               </Link>
             </TableCell>
             <TableCell className="text-center">

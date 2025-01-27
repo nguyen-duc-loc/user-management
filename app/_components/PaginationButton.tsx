@@ -56,12 +56,25 @@ const PaginationButton = ({
   return (
     <Button
       disabled={disabled}
-      variant={isActive ? "outline" : "ghost"}
+      variant={
+        isActive || page === "previous" || page === "next" ? "outline" : "ghost"
+      }
       onClick={handleClick}
-      className={`capitalize ${isActive ? "font-semibold" : ""}`}
+      className={`capitalize ${isActive && "font-semibold"} ${
+        (page === "previous" || page === "next") && "p-3"
+      } ${
+        (page === "ellipsis" || typeof page === "number") &&
+        "max-[500px]:hidden"
+      }`}
     >
       {page === "previous" && <ChevronLeft />}
-      {page === "ellipsis" ? <MoreHorizontal /> : page}
+      {page === "ellipsis" ? (
+        <MoreHorizontal />
+      ) : typeof page === "number" ? (
+        page
+      ) : (
+        ""
+      )}
       {page === "next" && <ChevronRight />}
     </Button>
   );

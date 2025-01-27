@@ -38,6 +38,7 @@ const ColorToggle = () => {
       onValueChange={(value) => {
         setColor((value as Color) || "blue");
       }}
+      defaultValue={color}
     >
       <SelectTrigger className="w-[160px] capitalize">
         <SelectValue placeholder={<ColorItem color={color} />} />
