@@ -73,8 +73,6 @@ const UserForm = ({
     toast.success(`${buttonText}d successfully!`);
   };
 
-  console.log(Object.keys(defaultValues));
-
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)} noValidate>
