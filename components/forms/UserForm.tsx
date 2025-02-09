@@ -143,7 +143,7 @@ const UserForm = ({
           ))}
         </div>
 
-        <div className="flex justify-between">
+        <div className="flex justify-between max-[420px]:flex-col-reverse max-[420px]:gap-4">
           {formType === "UPDATE" && (
             <Button
               type="button"
@@ -173,7 +173,7 @@ const UserForm = ({
               {deleting ? "Deleting" : "Delete"} user
             </Button>
           )}
-          <div className="ml-auto">
+          <div className="min-[420px]:ml-auto">
             <Button type="button" variant="outline" className="mr-4" asChild>
               <Link href="/">
                 <CornerUpLeft />
